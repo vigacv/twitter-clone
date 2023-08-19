@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import SupabaseProvider from './supabase-provider'
 import LeftSideBar from '@/components/left-sidebar'
 import RightSection from '@/components/right-section'
+import BottomNavBar from '@/components/bottom-navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             <RightSection />
           </div >
         </div >
+        <BottomNavBar />
       </body>
     </html>
   )
