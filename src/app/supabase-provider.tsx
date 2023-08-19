@@ -7,9 +7,9 @@ import { useRouter } from "next/navigation";
 import type { SupabaseClient, User } from "@supabase/auth-helpers-nextjs";
 import type { Database } from "@/lib/supabase.types";
 import { Toaster, toast } from "sonner";
-import { Dialog, DialogContent } from "./components/ui/dialog";
-import { Input } from "./components/ui/input";
-import { Button } from "./components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type SupabaseContext = {
     supabase: SupabaseClient<Database>;
@@ -69,18 +69,18 @@ export default function SupabaseProvider({
                                 setIsLoading(true);
 
                                 // first check if the username exists or not
-                                const { data, error } = await supabase
-                                    .from("profiles")
-                                    .select()
-                                    .eq("username", username.trim());
+                                // const { data } = await supabase
+                                //     .from("profiles")
+                                //     .select()
+                                //     .eq("username", username.trim());
 
-                                if (data && data?.length > 0) {
-                                    return toast.error(
-                                        "username already exists, please use another"
-                                    );
-                                }
+                                // if (data && data?.length > 0) {
+                                //     return toast.error(
+                                //         "username already exists, please use another"
+                                //     );
+                                // }
 
-                                const { data: signUpData, error: signUpError } =
+                                const { error: signUpError } =
                                     await supabase.auth.signInWithOtp({
                                         email: email.trim(),
                                         options: {
