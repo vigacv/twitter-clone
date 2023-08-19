@@ -40,7 +40,7 @@ const TweetPage = async ({ params }: { params: { id: string } }) => {
         .returns<TweetReplyReturnType[]>();
 
     return (
-        <main className="flex xl:w-[50%] h-full min-h-screen flex-col
+        <main className="flex w-full xl:w-[50%] h-full min-h-screen flex-col
           border-l-[0.5px] border-r-[0.5px] border-gray-600"
         >
             <div className="text-xl font-bold my-4 p-6 backdrop-blur bg-black/10 sticky top-0 border-b-[0.5px] border-gray-600 flex flex-row items-center gap-x-3">

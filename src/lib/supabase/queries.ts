@@ -9,6 +9,7 @@ export type TweetType = Database['public']['Tables']['tweets']['Row'] & {
         Database['public']['Tables']['profiles']['Row'], 'full_name' | 'username'
     >,
     likesCount: number,
+    repliesCount: number,
     isLikedByUser: boolean
 }
 
@@ -18,6 +19,9 @@ type TweetReturnType = Database['public']['Tables']['tweets']['Row'] & {
     >,
     likes: {
         user_id: string
+    }[],
+    replies: {
+        count: number
     }[]
 }
 
@@ -44,7 +48,8 @@ export const getTweets = async (userId?: string) => {
         ),
         likes (
             user_id
-        )
+        ),
+        replies(count)
     `)
         .order('created_at', {
             ascending: false
@@ -59,10 +64,11 @@ export const getTweets = async (userId?: string) => {
     return cleanedResponse;
 }
 
-const mapResponseToTweetType = (tweet: TweetReturnType, userId?: string) => {
+const mapResponseToTweetType = (tweet: TweetReturnType, userId?: string): TweetType => {
     return {
         ...tweet,
         likesCount: tweet.likes.length,
+        repliesCount: tweet.replies === undefined ? 0 : tweet.replies[0]?.count,
         isLikedByUser: userId === undefined ? false : tweet.likes.some(like => like.user_id === userId)
     }
 }
