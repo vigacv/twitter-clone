@@ -89,7 +89,7 @@ const Tweet = ({ tweet }: TweetProps) => {
                             <BsThreeDots />
                         </div>
                     </div>
-                    <div className="text-white text-base">
+                    <div className="text-white text-base mt-2">
                         {tweet.text}
                     </div>
                     {/* <div className="bg-slate-400 aspect-square w-full h-80 rounded-xl mt-2">
